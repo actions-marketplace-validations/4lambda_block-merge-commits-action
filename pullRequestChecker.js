@@ -4,6 +4,8 @@ const {
     getOctokit,
 } = require("@actions/github");
 
+vendor_dir_regex = /\.\/vendor\//g
+
 class PullRequestChecker {
     constructor(repoToken) {
         this.client = getOctokit(repoToken);
@@ -23,12 +25,29 @@ class PullRequestChecker {
 
         let blockedCommits = 0;
         for (const { sha, url, parents } of commits) {
+
             const isMergeCommit = parents.length > 1;
-
             if (isMergeCommit) {
-                error(`Commit ${sha} is a merge commit: ${url}`);
+                const commit = await this.client.paginate(
+                    'GET /repos/{owner}/{repo}/commits/{ref}',
+                    {
+                        ...context.repo,
+                        ref: sha,
+                    },
+                );
 
-                blockedCommits++;
+                for (const { files } of commit) {
+                    for (const { filename } of files) {
+                        const isVendorDir = vendor_dir_regex.test(filename)
+                        if (isVendorDir) {
+                            debug(filename);
+                        } else {
+                            error(`Commit ${sha} is a merge commit: ${url}`);
+
+                            blockedCommits++;
+                        }
+                    }
+                }
             }
         }
 

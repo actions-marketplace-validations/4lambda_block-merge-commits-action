@@ -1,6 +1,6 @@
-name: "Block Merge Commits"
-description: "Prevent merging pull requests that contain merge commits"
-author: "Morishiri"
+name: "Block Merges but Allow Vendor Updates"
+description: "Prevent merging pull requests that contain merge commits unless they are from git vendor."
+author: "Russell Bunch"
 branding:
   icon: "alert-circle"
   color: "Red"
