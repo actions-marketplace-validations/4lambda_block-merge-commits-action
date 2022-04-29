@@ -1,13 +1,13 @@
-FROM node:12-alpine
+FROM        node:12-alpine
 
 # Copy the package.json and package-lock.json
-COPY package*.json ./
+COPY        package*.json ./
 
 # Install dependencies
-RUN npm ci --only=production
+RUN         npm ci --only=production
 
 # Copy the rest of your action's code
-COPY . .
+COPY        . .
 
 # Run `node /main.js`
 ENTRYPOINT [ "node", "/main.js" ]

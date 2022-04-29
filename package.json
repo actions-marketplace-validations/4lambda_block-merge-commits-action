@@ -1,5 +1,5 @@
 {
-  "name": "block-merge-commits-action",
+  "name": "block-merges-but-allow-vendor-updates-action",
   "private": true,
   "main": "main.js",
   "scripts": {
