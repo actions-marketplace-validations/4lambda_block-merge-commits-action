@@ -25,7 +25,7 @@ jobs:
 
     steps:
       - name: Block Merge Commits
-        uses: Morishiri/block-merge-commits-action@v2
+        uses: 4lambda/block-merge-commits-action@v1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -54,7 +54,7 @@ jobs:
 
     steps:
       - name: Block Merge Commits
-        uses: Morishiri/block-merge-commits-action@v2
+        uses: 4lambda/block-merge-commits-action@v1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
@@ -77,7 +77,7 @@ jobs:
 
     steps:
       - name: Block Merge Commits
-        uses: Morishiri/block-merge-commits-action@v2
+        uses: 4lambda/block-merge-commits-action@v1.0.2
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
 ```
