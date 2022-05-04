@@ -4,7 +4,7 @@ const {
     getOctokit,
 } = require("@actions/github");
 
-vendor_dir_regex = /\.\/vendor\//g
+vendor_dir_regex = /^\.?\/?vendor\/.*/
 
 class PullRequestChecker {
     constructor(repoToken) {
@@ -38,7 +38,7 @@ class PullRequestChecker {
 
                 for (const { files } of commit) {
                     for (const { filename } of files) {
-                        const isVendorDir = vendor_dir_regex.test(filename)
+                        const isVendorDir = vendor_dir_regex.test(filename);
                         if (isVendorDir) {
                             debug(filename);
                         } else {
